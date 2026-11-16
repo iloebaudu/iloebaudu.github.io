@@ -388,6 +388,11 @@ a:hover { color: var(--c-chocolat); }
 }
 .tarifs strong { font-variant-numeric: lining-nums; font-family: var(--f-titre); font-size: 1.35rem; color: var(--c-terre-fonce); }
 
+.tarif-note { font-weight: 600; color: var(--c-terre-fonce); background: var(--c-sable); border-radius: var(--radius-sm); padding: .6rem 1rem; margin: .4rem 0 1.2rem; }
+
+/* Section « lagon » (relaxation aquatique) : fond bleu très léger */
+.section--lagon { background: linear-gradient(180deg, #EAF4F2 0%, var(--c-creme) 100%); }
+
 .grille-tarifs { display: grid; gap: 1.25rem; max-width: 640px; margin: 0 auto; }
 @media (min-width: 560px) { .grille-tarifs { grid-template-columns: 1fr 1fr; } }
 .tarif-bloc {

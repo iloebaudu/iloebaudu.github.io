@@ -116,6 +116,19 @@ window.MASSAGES = [
     ressenti: "Une sensation d'apaisement, de chaleur et de relâchement, idéale pour se recentrer."
   },
   {
+    id: "relaxation-aquatique",
+    nom: "Relaxation aquatique",
+    origine: "Dans l'eau chaude · au jardin ou chez vous",
+    image: "images/relaxation-aquatique-interieur-800.jpg",
+    imagePos: "50% 55%",
+    imageAlt: "Praticienne soutenant une personne qui flotte, détendue, dans une piscine intérieure chauffée",
+    accroche: "Se laisser porter par l'eau, bercé·e et soutenu·e en douceur.",
+    origineTexte: "Inspirée des pratiques de relaxation dans l'eau chaude, elle prolonge mon travail du toucher dans un élément qui libère le corps de son poids.",
+    deroule: "Allongé·e à la surface de l'eau et soutenu·e en permanence, vous êtes bercé·e, étiré·e et accompagné·e dans des mouvements lents et fluides. En été, dans ma piscine au jardin ; toute l'année, chez vous, dans votre piscine chauffée (intérieure, ou extérieure en été).",
+    ressenti: "Une sensation de légèreté et de flottement, un lâcher-prise profond, comme suspendu·e hors du temps.",
+    tarifTexte: "Tarif selon le lieu et la durée : renseignez-vous par téléphone."   // remplace la grille de prix sur cette carte
+  },
+  {
     id: "reflexologie-plantaire",
     nom: "Réflexologie plantaire",
     origine: "Traditions du monde",

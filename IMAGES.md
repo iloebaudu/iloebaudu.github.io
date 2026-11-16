@@ -42,6 +42,8 @@ Gardez de préférence le même format (paysage 3:2). La photo du salon (`salon-
 | `monoi-tiare-nacre` | À propos, « Mon lien avec Tahiti » |
 | `galerie-*` (12 photos) | À propos, galerie « Quelques moments partagés » |
 | `salon-espace-lumineux` | Salon & domicile, bloc « Au salon » |
+| `relaxation-aquatique-jardin` | Accueil, bloc « La relaxation aquatique » |
+| `relaxation-aquatique-interieur` | Massages, carte « Relaxation aquatique » |
 
 ### Photos libres de droits restantes (Unsplash)
 

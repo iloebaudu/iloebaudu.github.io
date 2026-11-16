@@ -76,7 +76,8 @@
             "<dt>Déroulé</dt><dd>" + esc(m.deroule) + "</dd>" +
             "<dt>Ressenti</dt><dd>" + esc(m.ressenti) + "</dd>" +
           "</dl>" +
-          '<ul class="tarifs" aria-label="Tarifs">' + htmlTarifs() + "</ul>" +
+          (m.tarifTexte ? '<p class="tarif-note">' + esc(m.tarifTexte) + "</p>"
+                        : '<ul class="tarifs" aria-label="Tarifs">' + htmlTarifs() + "</ul>") +
           (m.lien ? '<a class="carte__lien" href="' + esc(m.lien) + '">En savoir plus sur la ' + esc(m.nom.toLowerCase()) + " →</a>" : "") +
         "</div></article>";
     }).join("");

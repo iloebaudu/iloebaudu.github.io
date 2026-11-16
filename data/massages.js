@@ -30,8 +30,8 @@ window.MASSAGES = [
     image: "images/huile-flacon-mains-800.jpg",
     imageAlt: "Main versant quelques gouttes d'huile de massage depuis un flacon compte-gouttes",
     accroche: "Le massage qui me ressemble le plus : celui que je compose pour vous.",
-    origineTexte: "Au fil de mes voyages, j'ai appris de nombreuses techniques, de la Polynésie à l'Inde. Je les associe librement, sans protocole figé.",
-    deroule: "Nous échangeons d'abord sur vos envies et vos besoins du moment, puis j'enchaîne les gestes les plus adaptés : mouvements enveloppants, pressions, étirements doux.",
+    origineTexte: "Au fil de mes voyages, j'ai appris de nombreuses techniques, de Tahiti à la Thaïlande en passant par Hawaï. Je les associe librement, sans protocole figé.",
+    deroule: "Nous échangeons d'abord sur vos envies et vos besoins du moment, puis j'enchaîne les gestes les plus adaptés : mouvements enveloppants, pressions, étirements doux, pierres chaudes…",
     ressenti: "Un massage unique, ajusté à vous : détente profonde, relâchement des tensions ou regain d'énergie."
   },
   {
@@ -57,17 +57,6 @@ window.MASSAGES = [
     ressenti: "Un bercement ample et rythmé, idéal pour relâcher le mental et retrouver de la légèreté."
   },
   {
-    id: "balinais",
-    nom: "Massage balinais",
-    origine: "Bali · Indonésie",
-    image: "images/balinais-temple-bali-800.jpg",
-    imageAlt: "Temple balinais posé sur un rocher face à l'océan au coucher du soleil",
-    accroche: "Un équilibre entre douceur, pressions et étirements.",
-    origineTexte: "Né à Bali, il mêle des influences indiennes, chinoises et indonésiennes.",
-    deroule: "Effleurages à l'huile, pressions des pouces, pétrissages et étirements doux s'enchaînent sur tout le corps.",
-    ressenti: "Tonique et enveloppant à la fois : le corps se détend tout en retrouvant de l'énergie."
-  },
-  {
     id: "thai",
     nom: "Massage thaï",
     origine: "Thaïlande",
@@ -79,17 +68,6 @@ window.MASSAGES = [
     ressenti: "Une sensation de souplesse et de légèreté, le corps comme « déplié »."
   },
   {
-    id: "abhyanga",
-    nom: "Abhyanga",
-    origine: "Inde · tradition ayurvédique",
-    image: "images/abhyanga-inde-taj-mahal-800.jpg",
-    imageAlt: "Le Taj Mahal et ses jardins reflétés dans un bassin en Inde",
-    accroche: "Le grand massage à l'huile chaude de la tradition ayurvédique.",
-    origineTexte: "Issu de l'Ayurveda, l'art de vivre traditionnel indien, l'Abhyanga fait partie des rituels de bien-être du quotidien.",
-    deroule: "Une huile tiède est appliquée généreusement, puis travaillée par des mouvements rythmés, tantôt lents, tantôt dynamiques.",
-    ressenti: "Chaleur, ancrage et apaisement : un moment pour se recentrer et se rééquilibrer."
-  },
-  {
     id: "californien",
     nom: "Massage californien",
     origine: "Californie · États-Unis",
@@ -99,6 +77,39 @@ window.MASSAGES = [
     origineTexte: "Né en Californie dans les années 1970, il s'inscrit dans une approche globale de la relaxation.",
     deroule: "Lissages lents et enveloppants, pétrissages légers et mouvements harmonieux sur l'ensemble du corps, avec une huile neutre ou parfumée.",
     ressenti: "Un profond bien-être, une sensation d'unité du corps et un vrai temps pour soi."
+  },
+  {
+    id: "pierres-chaudes",
+    nom: "Massage aux pierres chaudes",
+    origine: "Traditions du monde",
+    image: "images/pierres-chaudes-mains-800.jpg",
+    imageAlt: "Mains posant des pierres chaudes sur un dos, entourées de fleurs blanches",
+    accroche: "La chaleur des pierres volcaniques pour un relâchement en profondeur.",
+    origineTexte: "L'usage de pierres chauffées pour se détendre se retrouve dans de nombreuses cultures, des Amériques à l'Asie.",
+    deroule: "Des pierres de basalte lisses et chaudes sont posées sur le corps puis utilisées comme prolongement des mains, en alternance avec des mouvements à l'huile.",
+    ressenti: "Une chaleur douce et diffuse qui enveloppe le corps et invite à un lâcher-prise total."
+  },
+  {
+    id: "massage-assis",
+    nom: "Massage assis",
+    origine: "Inspiré de l'amma japonais",
+    image: "images/massage-assis-mains-dos-800.jpg",
+    imageAlt: "Mains de praticienne posées sur le dos d'une personne",
+    accroche: "Une pause détente express, habillé·e, sur une chaise ergonomique.",
+    origineTexte: "Inspiré de techniques japonaises traditionnelles, le massage assis permet de se détendre sans se déshabiller ni s'allonger.",
+    deroule: "Installé·e confortablement sur une chaise de massage, vous recevez des pressions et des étirements sur le dos, les épaules, la nuque, les bras et la tête.",
+    ressenti: "Une détente rapide des épaules et de la nuque, et une sensation de légèreté pour repartir du bon pied."
+  },
+  {
+    id: "massage-ventre",
+    nom: "Massage du ventre",
+    origine: "Traditions du monde",
+    image: "images/formation-gestes-bras-800.jpg",
+    imageAlt: "Gros plan sur des mains effectuant des pressions douces",
+    accroche: "Un massage doux et enveloppant du ventre, centre de nos émotions.",
+    origineTexte: "Le massage du ventre est présent dans de nombreuses traditions, notamment en Asie, où le ventre est considéré comme un centre d'énergie.",
+    deroule: "Des mouvements lents et circulaires, des lissages et de légères pressions sont réalisés sur le ventre avec une huile tiède, dans le respect de votre confort.",
+    ressenti: "Une sensation d'apaisement, de chaleur et de relâchement, idéale pour se recentrer."
   },
   {
     id: "reflexologie-plantaire",

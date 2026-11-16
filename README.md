@@ -130,3 +130,9 @@ python3 -m http.server 8000
 ```
 
 Puis ouvrez <http://localhost:8000>.
+
+## 10. Après une modification : vider le cache
+
+Les navigateurs gardent les fichiers en mémoire quelques minutes. Si une modification n'apparaît pas, rechargez la page en forçant (`Cmd+Maj+R` sur Mac, `Ctrl+F5` sur PC) ou attendez une dizaine de minutes.
+
+Quand vous modifiez `css/style.css`, `js/main.js` ou un fichier de `data/`, augmentez le numéro de version `?v=2` (par exemple `?v=3`) dans toutes les pages `.html` avec un Rechercher / Remplacer. Les visiteurs recevront ainsi immédiatement la nouvelle version.

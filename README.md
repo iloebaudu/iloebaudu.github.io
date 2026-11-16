@@ -28,11 +28,11 @@ sitemap.xml, robots.txt        Référencement
 
 ## 1. Avant la mise en ligne : l'adresse du site
 
-L'adresse définitive du site n'est pas encore connue. Elle est remplacée partout par **`https://VOTRE-SITE.fr`**.
+L'adresse définitive du site n'est pas encore connue. Elle est remplacée partout par **`https://iloebaudu.github.io`**.
 
 Une fois l'adresse connue (par exemple `https://votrecompte.github.io/nom-du-depot` ou un nom de domaine comme `https://www.lacherprise-massage.fr`), faites un **Rechercher / Remplacer dans tous les fichiers** (avec VS Code : `Ctrl+Maj+H`) :
 
-- rechercher `https://VOTRE-SITE.fr`
+- rechercher `https://iloebaudu.github.io`
 - remplacer par votre adresse, **sans `/` à la fin**
 
 Les fichiers concernés sont toutes les pages `.html`, `sitemap.xml` et `robots.txt`.

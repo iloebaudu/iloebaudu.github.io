@@ -1,5 +1,4 @@
-# [À COMPLÉTER] Remplacez https://VOTRE-SITE.fr par l'adresse définitive du site
 User-agent: *
 Allow: /
 
-Sitemap: https://VOTRE-SITE.fr/sitemap.xml
+Sitemap: https://iloebaudu.github.io/sitemap.xml

@@ -26,16 +26,11 @@ sitemap.xml, robots.txt        Référencement
 
 ---
 
-## 1. Avant la mise en ligne : l'adresse du site
+## 1. Adresse du site
 
-L'adresse définitive du site n'est pas encore connue. Elle est remplacée partout par **`https://iloebaudu.github.io`**.
+Le site est publié à l'adresse **https://iloebaudu.github.io**, utilisée dans toutes les pages (balises `canonical`, Open Graph, données structurées), dans `sitemap.xml` et dans `robots.txt`.
 
-Une fois l'adresse connue (par exemple `https://votrecompte.github.io/nom-du-depot` ou un nom de domaine comme `https://www.lacherprise-massage.fr`), faites un **Rechercher / Remplacer dans tous les fichiers** (avec VS Code : `Ctrl+Maj+H`) :
-
-- rechercher `https://iloebaudu.github.io`
-- remplacer par votre adresse, **sans `/` à la fin**
-
-Les fichiers concernés sont toutes les pages `.html`, `sitemap.xml` et `robots.txt`.
+Si vous prenez plus tard un nom de domaine personnalisé (par exemple `https://www.lacherprise-massage.fr`), faites un **Rechercher / Remplacer dans tous les fichiers** (`Ctrl+Maj+H` dans VS Code) : remplacez `https://iloebaudu.github.io` par la nouvelle adresse, **sans `/` à la fin**.
 
 ## 2. Modifier les tarifs
 
@@ -118,7 +113,6 @@ Changez un code couleur et tout le site suit.
 3. Dans le dépôt, allez dans **Settings → Pages**.
 4. Dans **Source**, choisissez « Deploy from a branch », sélectionnez la branche **`main`** et le dossier **`/ (root)`**, puis cliquez sur **Save**.
 5. Après une à deux minutes, le site est en ligne à l'adresse `https://VOTRE-COMPTE.github.io/site-isabelle/`.
-6. Faites le Rechercher / Remplacer de l'étape 1 avec cette adresse, puis renvoyez les fichiers.
 
 **Nom de domaine personnalisé (facultatif)** : dans Settings → Pages → *Custom domain*, saisissez votre domaine, puis suivez les instructions de GitHub pour configurer les DNS chez votre registrar. Cochez ensuite « Enforce HTTPS ».
 

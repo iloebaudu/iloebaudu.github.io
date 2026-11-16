@@ -61,7 +61,7 @@ Toujours dans **`data/massages.js`**, chaque massage est un bloc `{ ... }` :
 
 ## 4. Modifier les formations
 
-Ouvrez **`data/formations.js`**. Les 3 formations actuelles sont des **exemples** (`exemple: true`) : un badge « Exemple – informations à venir » s'affiche sur chaque carte.
+Ouvrez **`data/formations.js`**. Les formations actuelles sont des **exemples** (`exemple: true`) : un badge « Exemple – informations à venir » s'affiche sur chaque carte.
 
 Pour publier une vraie formation :
 

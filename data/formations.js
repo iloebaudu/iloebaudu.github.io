@@ -1,7 +1,7 @@
 /* =====================================================================
    DONNÉES — FORMATIONS
    ---------------------------------------------------------------------
-   ⚠️  CONTENU DE SIMULATION : les 3 formations ci-dessous sont des
+   ⚠️  CONTENU DE SIMULATION : les formations ci-dessous sont des
        EXEMPLES. Dates, durées, prix et nombre de places sont fictifs.
 
    👉 Pour publier une vraie formation :
@@ -44,20 +44,5 @@ window.FORMATIONS = [
     places: "8 places",                              // EXEMPLE
     lieu: "Salon – Les Mages (Gard)",
     public: "Débutant·es"
-  },
-  {
-    exemple: true,                                   // ⚠️ EXEMPLE – informations à venir
-    id: "formation-reflexologie-plantaire",
-    titre: "Découverte de la réflexologie plantaire",
-    sousTitre: "Les zones du pied et une séance de détente complète",
-    image: "images/formation-gestes-bras-800.jpg",
-    imageAlt: "Gros plan sur des mains effectuant des pressions douces",
-    description: "Cartographie des zones réflexes, techniques de pression et de lissage, déroulé d'une séance de détente d'une heure. Une approche accessible pour enrichir sa pratique du bien-être.",
-    dates: "Les 22 et 23 mai 2027",                  // EXEMPLE
-    duree: "2 jours (14 h)",                         // EXEMPLE
-    prix: "280 €",                                   // EXEMPLE
-    places: "6 places",                              // EXEMPLE
-    lieu: "Salon – Les Mages (Gard)",
-    public: "Tous niveaux"
   }
 ];

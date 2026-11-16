@@ -1,4 +1,14 @@
+# ---------------------------------------------------------------
+# PHASE DE RELECTURE : le site n'est pas référencé.
+# Toutes les pages portent <meta name="robots" content="noindex, nofollow">.
+# L'exploration reste autorisée pour que Google puisse lire cette
+# consigne (une interdiction ici l'empêcherait de la voir).
+#
+# AU LANCEMENT : remettre « index, follow » dans les pages
+# (voir README, section « Lancer le site publiquement ») et
+# décommenter la ligne Sitemap ci-dessous.
+# ---------------------------------------------------------------
 User-agent: *
 Allow: /
 
-Sitemap: https://iloebaudu.github.io/sitemap.xml
+# Sitemap: https://iloebaudu.github.io/sitemap.xml

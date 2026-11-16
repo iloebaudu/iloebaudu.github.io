@@ -136,3 +136,18 @@ Puis ouvrez <http://localhost:8000>.
 Les navigateurs gardent les fichiers en mémoire quelques minutes. Si une modification n'apparaît pas, rechargez la page en forçant (`Cmd+Maj+R` sur Mac, `Ctrl+F5` sur PC) ou attendez une dizaine de minutes.
 
 Quand vous modifiez `css/style.css`, `js/main.js` ou un fichier de `data/`, augmentez le numéro de version `?v=2` (par exemple `?v=3`) dans toutes les pages `.html` avec un Rechercher / Remplacer. Les visiteurs recevront ainsi immédiatement la nouvelle version.
+
+## 11. Lancer le site publiquement (référencement Google)
+
+Pour l'instant, le site est en **phase de relecture**. Les personnes à qui vous donnez le lien peuvent le consulter, mais Google a pour consigne de ne pas l'afficher dans ses résultats. Toutes les pages contiennent :
+
+```html
+<meta name="robots" content="noindex, nofollow">
+```
+
+Le jour du lancement :
+
+1. Dans toutes les pages `.html`, **sauf** `mentions-legales.html`, `politique-confidentialite.html` et `404.html`, remplacez `noindex, nofollow` par `index, follow` avec un Rechercher / Remplacer.
+2. Dans `robots.txt`, retirez le `#` devant la ligne `Sitemap:`.
+3. Déclarez le site et le sitemap dans Google Search Console.
+

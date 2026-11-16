@@ -39,8 +39,9 @@ window.MASSAGES = [
     id: "taurumi",                       // identifiant (lettres, sans espace) : sert d'ancre #taurumi
     nom: "Taurumi",
     origine: "Tahiti · Polynésie française",
-    image: "images/taurumi-massage-pareo-800.jpg",
-    imageAlt: "Praticienne en paréo massant le dos d'une personne, devant une tenture à fleurs de tiaré",
+    image: "images/monoi-tiare-nacre-800.jpg",
+    imagePos: "50% 72%",
+    imageAlt: "Fleurs de tiaré, perles de Tahiti et pochon de massage posés sur une nacre",
     accroche: "Le massage traditionnel polynésien, transmis de génération en génération.",
     origineTexte: "Pratique ancestrale des îles de la Société, le Taurumi accompagnait autrefois la vie de famille et les grands moments du quotidien polynésien.",
     deroule: "Mains, avant-bras et coudes glissent en longs mouvements enveloppants, au rythme de la respiration, avec un monoï chaud parfumé à la fleur de tiaré.",

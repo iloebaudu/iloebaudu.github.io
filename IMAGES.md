@@ -27,7 +27,6 @@ Gardez de préférence le même format (paysage 3:2). La photo du salon (`salon-
 | `formation-groupe-pratique` | Accueil, carte « Formations » |
 | `formation-taurumi-danse-pareos` | Accueil, bloc « Je transmets le Taurumi » |
 | `massage-sur-mesure-mains` | Massages, carte « Massage sur mesure » |
-| `taurumi-massage-pareo` | Massages, carte Taurumi |
 | `massage-thai-etirement` | Massages, carte massage thaï |
 | `massage-californien-visage` | Massages, carte massage californien |
 | `pierres-chaudes-pose` | Massages, carte pierres chaudes |
@@ -39,7 +38,7 @@ Gardez de préférence le même format (paysage 3:2). La photo du salon (`salon-
 | `formation-thai-etirement` | Formations, carte thaï |
 | `formation-pierres-chaudes` | Formations, carte pierres chaudes |
 | `portrait-isabelle` | À propos, portrait |
-| `monoi-tiare-nacre` | À propos, « Mon lien avec Tahiti » |
+| `monoi-tiare-nacre` | À propos, « Mon lien avec Tahiti » ; Massages, carte Taurumi |
 | `galerie-*` (12 photos) | À propos, galerie « Quelques moments partagés » |
 | `salon-espace-lumineux` | Salon & domicile, bloc « Au salon » |
 | `relaxation-aquatique-jardin` | Accueil, bloc « La relaxation aquatique » |

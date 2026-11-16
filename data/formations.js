@@ -27,7 +27,7 @@ window.FORMATIONS = [
     duree: "5 jours (35 h)",                         // EXEMPLE
     prix: "650 €",                                   // EXEMPLE
     places: "6 places",                              // EXEMPLE
-    lieu: "Salon des Mages (Gard)",
+    lieu: "Salon – Les Mages (Gard)",
     public: "Tous niveaux, aucun prérequis"
   },
   {
@@ -42,7 +42,7 @@ window.FORMATIONS = [
     duree: "2 jours (14 h)",                         // EXEMPLE
     prix: "260 €",                                   // EXEMPLE
     places: "8 places",                              // EXEMPLE
-    lieu: "Salon des Mages (Gard)",
+    lieu: "Salon – Les Mages (Gard)",
     public: "Débutant·es"
   },
   {
@@ -57,7 +57,7 @@ window.FORMATIONS = [
     duree: "2 jours (14 h)",                         // EXEMPLE
     prix: "280 €",                                   // EXEMPLE
     places: "6 places",                              // EXEMPLE
-    lieu: "Salon des Mages (Gard)",
+    lieu: "Salon – Les Mages (Gard)",
     public: "Tous niveaux"
   }
 ];

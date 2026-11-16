@@ -22,9 +22,9 @@ Lien source : `https://unsplash.com/photos/<identifiant>`
 | Fichier (dans `images/`) | Où elle apparaît | Sujet actuel | Identifiant Unsplash | À remplacer par (suggestion) |
 |---|---|---|---|---|
 | `hero-pierres-chaudes-fleurs` | Accueil, grand visuel (et `og-image.jpg`) | Dos avec pierres chaudes et fleurs blanches | `photo-1600334089648-b0d9d3028eb2` | Photo d'ambiance du salon / d'un Taurumi |
-| `taurumi-massage-huile` | Accueil, bloc Taurumi | Huile versée sur un dos | `photo-1544161515-4ab6ce6db874` | Isabelle pratiquant le Taurumi |
+| `taurumi-massage-huile` | Accueil, bloc « massage sur mesure » | Huile versée sur un dos | `photo-1544161515-4ab6ce6db874` | Isabelle en train de masser |
 | `tahiti-bungalows-lagon` | Accueil, Massages (carte Taurumi), À propos | Bungalows sur pilotis, lagon | `photo-1589197331516-4d84b72ebde3` | Photo personnelle de Tahiti |
-| `polynesie-coucher-soleil-plage` | Accueil, bloc « univers » | Plage et cocotiers au coucher du soleil | `photo-1542259009477-d625272157b7` | Photo personnelle de Polynésie |
+| `polynesie-coucher-soleil-plage` | Accueil, bloc « Je transmets le Taurumi » | Plage et cocotiers au coucher du soleil | `photo-1542259009477-d625272157b7` | Photo personnelle de Polynésie |
 | `taurumi-pierres-mains` | Formations (carte Taurumi) | Mains posant des pierres chaudes | `photo-1600334129128-685c5582fd35` | Photo d'une formation Taurumi |
 | `lomi-lomi-hawaii-kauai` | Massages (Lomi-lomi) | Côte de Kauai, Hawaï | `photo-1598135753163-6167c1a1ad65` | (peut rester) |
 | `balinais-temple-bali` | Massages (balinais) | Temple de Bali au coucher du soleil | `photo-1518548419970-58e3b4079ab2` | (peut rester) |
@@ -37,7 +37,7 @@ Lien source : `https://unsplash.com/photos/<identifiant>`
 | `a-propos-meditation-palmiers` | À propos | Silhouette en méditation face aux palmiers | `photo-1600618528240-fb9fc964b853` | **Portrait d'Isabelle** |
 | `salon-ambiance-bougies` (portrait) | Salon & domicile | Bougies et diffuseur | `photo-1620733723572-11c53f73a416` | **Photo du salon** |
 | `domicile-salon-lumineux` | Salon & domicile | Salon lumineux | `photo-1613545325268-9265e1609167` | Table installée à domicile |
-| `huile-flacon-mains` | (réserve, non utilisée) | Flacon d'huile | `photo-1515377905703-c4788e51af15` | — |
+| `huile-flacon-mains` | Massages (carte « Massage sur mesure ») | Flacon d'huile compte-gouttes | `photo-1515377905703-c4788e51af15` | Les huiles d'Isabelle |
 | `pierres-zen-nature` | (réserve, non utilisée) | Galets empilés | `photo-1532009877282-3340270e0529` | — |
 
 Les noms des photographes ne sont pas indiqués ici : vous les trouverez sur chaque page Unsplash (lien ci-dessus) si vous souhaitez les créditer.

@@ -23,10 +23,21 @@ window.TARIFS = [
 
 window.MASSAGES = [
   {
+    id: "sur-mesure",
+    nom: "Massage sur mesure",
+    origine: "Techniques du monde · composé pour vous",
+    vedette: true,                       // true = mis en avant (grande carte)
+    image: "images/huile-flacon-mains-800.jpg",
+    imageAlt: "Main versant quelques gouttes d'huile de massage depuis un flacon compte-gouttes",
+    accroche: "Le massage qui me ressemble le plus : celui que je compose pour vous.",
+    origineTexte: "Au fil de mes voyages, j'ai appris de nombreuses techniques, de la Polynésie à l'Inde. Je les associe librement, sans protocole figé.",
+    deroule: "Nous échangeons d'abord sur vos envies et vos besoins du moment, puis j'enchaîne les gestes les plus adaptés : mouvements enveloppants, pressions, étirements doux.",
+    ressenti: "Un massage unique, ajusté à vous : détente profonde, relâchement des tensions ou regain d'énergie."
+  },
+  {
     id: "taurumi",                       // identifiant (lettres, sans espace) : sert d'ancre #taurumi
     nom: "Taurumi",
     origine: "Tahiti · Polynésie française",
-    vedette: true,                       // true = mis en avant (grande carte)
     image: "images/tahiti-bungalows-lagon-800.jpg",
     imageAlt: "Lagon turquoise de Polynésie avec des bungalows sur pilotis",
     accroche: "Le massage traditionnel polynésien, transmis de génération en génération.",

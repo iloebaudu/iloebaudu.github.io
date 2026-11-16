@@ -65,7 +65,7 @@
   if (listeMassages && window.MASSAGES) {
     listeMassages.innerHTML = window.MASSAGES.map(function (m) {
       return '<article class="carte reveal' + (m.vedette ? " carte--vedette" : "") + '" id="' + esc(m.id) + '">' +
-        '<div class="carte__media"><img src="' + esc(m.image) + '" alt="' + esc(m.imageAlt) + '" loading="lazy" decoding="async" width="800" height="533"></div>' +
+        '<div class="carte__media"><img src="' + esc(m.image) + '" alt="' + esc(m.imageAlt) + '"' + (m.imagePos ? ' style="object-position:' + esc(m.imagePos) + '"' : "") + ' loading="lazy" decoding="async" width="800" height="533"></div>' +
         '<div class="carte__corps">' +
           (m.vedette ? '<p><span class="etiquette">Ma spécialité</span></p>' : "") +
           '<p class="carte__origine">' + esc(m.origine) + "</p>" +
@@ -89,7 +89,7 @@
   if (listeFormations && window.FORMATIONS) {
     listeFormations.innerHTML = window.FORMATIONS.map(function (f) {
       return '<article class="carte formation reveal' + (f.exemple ? " formation--exemple" : "") + '" id="' + esc(f.id) + '">' +
-        '<div class="carte__media"><img src="' + esc(f.image) + '" alt="' + esc(f.imageAlt) + '" loading="lazy" decoding="async" width="800" height="533"></div>' +
+        '<div class="carte__media"><img src="' + esc(f.image) + '" alt="' + esc(f.imageAlt) + '"' + (f.imagePos ? ' style="object-position:' + esc(f.imagePos) + '"' : "") + ' loading="lazy" decoding="async" width="800" height="533"></div>' +
         '<div class="carte__corps">' +
           (f.exemple ? '<span class="badge-exemple">Exemple – informations à venir</span>' : "") +
           "<h2 class=\"h3\">" + esc(f.titre) + "</h2>" +

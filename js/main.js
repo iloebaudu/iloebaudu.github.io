@@ -67,7 +67,7 @@
       return '<article class="carte reveal' + (m.vedette ? " carte--vedette" : "") + '" id="' + esc(m.id) + '">' +
         '<div class="carte__media"><img src="' + esc(m.image) + '" alt="' + esc(m.imageAlt) + '"' + (m.imagePos ? ' style="object-position:' + esc(m.imagePos) + '"' : "") + ' loading="lazy" decoding="async" width="800" height="533"></div>' +
         '<div class="carte__corps">' +
-          (m.vedette ? '<p><span class="etiquette">Ma spécialité</span></p>' : "") +
+          (m.vedette ? '<p><span class="etiquette">Recommandé</span></p>' : "") +
           '<p class="carte__origine">' + esc(m.origine) + "</p>" +
           "<h2 class=\"h3\">" + esc(m.nom) + "</h2>" +
           "<p>" + esc(m.accroche) + "</p>" +

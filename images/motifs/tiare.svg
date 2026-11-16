@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="Fleur de tiaré">
+  <!-- Fleur de tiaré stylisée : 5 pétales légèrement décalés (en hélice) -->
+  <g transform="translate(50 50)">
+    <g id="p" fill="#FFFDF8" stroke="#B65F3C" stroke-width="2.2" stroke-linejoin="round">
+      <path d="M0 -6 C 10 -14, 22 -34, 6 -44 C -6 -36, -10 -18, 0 -6 Z"/>
+    </g>
+    <use href="#p" transform="rotate(72)"/>
+    <use href="#p" transform="rotate(144)"/>
+    <use href="#p" transform="rotate(216)"/>
+    <use href="#p" transform="rotate(288)"/>
+    <circle r="6" fill="#E9B44C" stroke="#B65F3C" stroke-width="1.6"/>
+  </g>
+</svg>

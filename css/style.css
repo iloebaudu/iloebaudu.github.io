@@ -1,0 +1,562 @@
+/* =====================================================================
+   Isabelle Di Nunzio — Massages du monde, Taurumi & réflexologie
+   Feuille de style unique du site.
+
+   👉 POUR CHANGER LE STYLE : modifiez uniquement les variables
+      du bloc « :root » ci-dessous (couleurs, polices, arrondis…).
+   ===================================================================== */
+
+:root {
+  /* ---------- Couleurs ---------- */
+  --c-creme:        #FAF5EC; /* fond principal */
+  --c-sable:        #EFE4D2; /* fond des sections alternées */
+  --c-lin:          #D9C7A7; /* bordures, séparateurs */
+  --c-terre:        #B65F3C; /* accent chaud (décor, icônes) */
+  --c-terre-fonce:  #9A4A2C; /* boutons, liens (contraste AA sur crème) */
+  --c-chocolat:     #3E2A1F; /* texte principal, titres */
+  --c-bois:         #6F5240; /* texte secondaire */
+  --c-vert:         #2F6B5A; /* touche tropicale (Tahiti) */
+  --c-lagon:        #2B8A9A; /* touche lagon : décor uniquement, pas pour du texte */
+  --c-tiare:        #FFFDF8; /* blanc chaud, fond des cartes */
+  --c-exemple:      #FCEBD9; /* fond des encarts « Exemple » */
+
+  /* ---------- Polices (Google Fonts hébergées dans /fonts, voir @font-face plus bas) ---------- */
+  --f-titre: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --f-texte: "Nunito Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  /* ---------- Formes & espacements ---------- */
+  --radius:      18px;
+  --radius-sm:   10px;
+  --radius-pill: 999px;
+  --ombre:       0 10px 30px -12px rgba(62, 42, 31, .25);
+  --largeur-max: 1160px;
+  --section-y:   clamp(3.5rem, 8vw, 6.5rem);
+  --gouttiere:   clamp(1rem, 4vw, 2rem);
+}
+
+/* =====================================================================
+   0. Polices Google Fonts hébergées localement (dossier /fonts)
+   → aucune requête vers Google : plus rapide et plus respectueux du RGPD.
+   Licence : SIL Open Font License (voir fonts/OFL-*.txt)
+   ===================================================================== */
+@font-face { font-family: "Cormorant Garamond"; font-style: normal; font-weight: 500; font-display: swap; src: url("../fonts/cormorant-garamond-latin-500-normal.woff2") format("woff2"); }
+@font-face { font-family: "Cormorant Garamond"; font-style: italic; font-weight: 500; font-display: swap; src: url("../fonts/cormorant-garamond-latin-500-italic.woff2") format("woff2"); }
+@font-face { font-family: "Cormorant Garamond"; font-style: normal; font-weight: 600; font-display: swap; src: url("../fonts/cormorant-garamond-latin-600-normal.woff2") format("woff2"); }
+@font-face { font-family: "Nunito Sans"; font-style: normal; font-weight: 400; font-display: swap; src: url("../fonts/nunito-sans-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "Nunito Sans"; font-style: normal; font-weight: 600; font-display: swap; src: url("../fonts/nunito-sans-latin-600-normal.woff2") format("woff2"); }
+@font-face { font-family: "Nunito Sans"; font-style: normal; font-weight: 700; font-display: swap; src: url("../fonts/nunito-sans-latin-700-normal.woff2") format("woff2"); }
+
+/* =====================================================================
+   1. Base
+   ===================================================================== */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+body {
+  margin: 0;
+  background: var(--c-creme);
+  color: var(--c-chocolat);
+  font-family: var(--f-texte);
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  /* espace pour la barre d'appel fixe sur mobile */
+  padding-bottom: 76px;
+}
+@media (min-width: 900px) { body { padding-bottom: 0; } }
+
+img { max-width: 100%; height: auto; display: block; }
+
+h1, h2, h3 {
+  font-variant-numeric: lining-nums;
+  font-family: var(--f-titre);
+  font-weight: 600;
+  line-height: 1.15;
+  color: var(--c-chocolat);
+  margin: 0 0 .6em;
+}
+h1 { font-size: clamp(2.3rem, 6.5vw, 4rem); }
+h2 { font-size: clamp(1.9rem, 4.5vw, 2.8rem); }
+h3, .h3 { font-size: clamp(1.4rem, 3vw, 1.75rem); }
+p  { margin: 0 0 1.1em; }
+
+a { color: var(--c-terre-fonce); text-underline-offset: 3px; }
+a:hover { color: var(--c-chocolat); }
+
+:focus-visible {
+  outline: 3px solid var(--c-vert);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.visually-hidden {
+  position: absolute !important; width: 1px; height: 1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+.skip-link {
+  position: absolute; left: 1rem; top: -100px; z-index: 100;
+  background: var(--c-chocolat); color: #fff; padding: .7rem 1rem;
+  border-radius: var(--radius-sm);
+}
+.skip-link:focus { top: 1rem; color: #fff; }
+
+.container { width: 100%; max-width: var(--largeur-max); margin: 0 auto; padding: 0 var(--gouttiere); }
+.container--etroit { max-width: 780px; }
+
+/* =====================================================================
+   2. Motifs décoratifs (tapa polynésien & fleur de tiaré) — très discrets
+   ===================================================================== */
+
+/* Frise inspirée des tapa : triangles et zigzags, répétée horizontalement */
+.frise-tapa {
+  height: 18px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='18' viewBox='0 0 48 18'%3E%3Cg fill='none' stroke='%23B65F3C' stroke-width='1.3' opacity='.55'%3E%3Cpath d='M0 15 L12 3 L24 15 L36 3 L48 15'/%3E%3Cpath d='M0 9h4M20 9h8M44 9h4'/%3E%3C/g%3E%3Cg fill='%23B65F3C' opacity='.4'%3E%3Ccircle cx='12' cy='13' r='1.4'/%3E%3Ccircle cx='36' cy='13' r='1.4'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  background-position: center;
+}
+
+/* Fond texturé « fibre de tapa » pour les sections sable */
+.fond-tapa {
+  background-color: var(--c-sable);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='none' stroke='%237A5A43' stroke-width='.8' opacity='.09'%3E%3Cpath d='M0 20 L20 0 L40 20 L60 0 L80 20'/%3E%3Cpath d='M0 60 L20 40 L40 60 L60 40 L80 60'/%3E%3Cpath d='M20 30v20M60 30v20'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Petite fleur de tiaré utilisée comme ornement de titre */
+.ornement {
+  display: inline-flex; align-items: center; gap: .6rem;
+  font-family: var(--f-texte);
+  font-size: .8rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--c-vert);
+  margin-bottom: .9rem;
+}
+.ornement::before {
+  content: ""; width: 20px; height: 20px; flex: none;
+  background: url("../images/motifs/tiare.svg") center / contain no-repeat;
+}
+
+/* =====================================================================
+   3. Boutons
+   ===================================================================== */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .55rem;
+  min-height: 48px; padding: .8rem 1.5rem;
+  border-radius: var(--radius-pill);
+  font-family: var(--f-texte); font-weight: 700; font-size: 1rem; line-height: 1.2;
+  text-decoration: none; text-align: center;
+  border: 2px solid transparent;
+  transition: background-color .25s, color .25s, transform .25s, box-shadow .25s;
+  cursor: pointer;
+}
+.btn svg { width: 20px; height: 20px; flex: none; }
+.btn:hover { transform: translateY(-2px); }
+
+.btn--appel { background: var(--c-terre-fonce); color: #fff; box-shadow: var(--ombre); }
+.btn--appel:hover { background: var(--c-chocolat); color: #fff; }
+.btn--appel { flex-wrap: wrap; column-gap: .45rem; row-gap: .1rem; }
+.btn--appel .numero { font-weight: 600; opacity: .95; white-space: nowrap; }
+.btn--appel .numero::before { content: "· "; }
+/* Sur petit écran, le numéro passe proprement sous le libellé */
+@media (max-width: 479px) {
+  .btn--appel .numero { flex-basis: 100%; }
+  .btn--appel .numero::before { content: ""; }
+}
+
+.btn--contour { border-color: var(--c-chocolat); color: var(--c-chocolat); background: transparent; }
+.btn--contour:hover { background: var(--c-chocolat); color: #fff; }
+
+.btn--clair { background: var(--c-tiare); color: var(--c-chocolat); }
+.btn--clair:hover { background: #fff; color: var(--c-terre-fonce); }
+
+.groupe-btn { display: flex; flex-wrap: wrap; gap: .8rem; align-items: center; }
+
+/* =====================================================================
+   4. En-tête & navigation
+   ===================================================================== */
+.site-header {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(250, 245, 236, .94);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(217, 199, 167, .6);
+}
+.site-header .container {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  min-height: 72px;
+}
+
+.logo { display: flex; align-items: center; gap: .65rem; text-decoration: none; color: var(--c-chocolat); }
+.logo img { width: 40px; height: 40px; }
+.logo__nom { white-space: nowrap; font-family: var(--f-titre); font-size: 1.45rem; font-weight: 600; line-height: 1; display: block; }
+.logo__sous { white-space: nowrap; font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--c-bois); display: block; margin-top: .25rem; }
+
+.nav-toggle {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 48px; height: 48px; border-radius: 50%;
+  background: transparent; border: 1px solid var(--c-lin); color: var(--c-chocolat);
+  cursor: pointer;
+}
+.nav-toggle__barres, .nav-toggle__barres::before, .nav-toggle__barres::after {
+  display: block; width: 20px; height: 2px; background: currentColor; border-radius: 2px;
+  position: relative; transition: transform .3s, background-color .3s;
+}
+.nav-toggle__barres::before, .nav-toggle__barres::after { content: ""; position: absolute; left: 0; }
+.nav-toggle__barres::before { top: -6px; }
+.nav-toggle__barres::after  { top: 6px; }
+.nav-toggle[aria-expanded="true"] .nav-toggle__barres { background: transparent; }
+.nav-toggle[aria-expanded="true"] .nav-toggle__barres::before { transform: translateY(6px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] .nav-toggle__barres::after  { transform: translateY(-6px) rotate(-45deg); }
+
+.site-nav { display: none; }
+.site-nav.est-ouvert {
+  display: block;
+  position: absolute; left: 0; right: 0; top: 100%;
+  background: var(--c-creme);
+  border-bottom: 1px solid var(--c-lin);
+  box-shadow: var(--ombre);
+  padding: .5rem var(--gouttiere) 1.5rem;
+  max-height: calc(100vh - 72px); overflow-y: auto;
+}
+.site-nav ul { list-style: none; margin: 0; padding: 0; }
+.site-nav a {
+  display: block; padding: .85rem .25rem;
+  color: var(--c-chocolat); text-decoration: none; font-weight: 600;
+  border-bottom: 1px solid rgba(217, 199, 167, .5);
+}
+.site-nav a[aria-current="page"] { color: var(--c-terre-fonce); }
+.site-nav .btn { margin-top: 1rem; width: 100%; }
+.site-nav a.btn { display: flex; color: #fff; padding: .8rem 1.5rem; border-bottom: 0; }
+.header-appel { display: none; }
+
+@media (min-width: 1200px) {
+  .nav-toggle { display: none; }
+  .site-nav, .site-nav.est-ouvert {
+    display: block; position: static; background: none; box-shadow: none; padding: 0; border: 0;
+  }
+  .site-nav ul { display: flex; gap: 1.1rem; align-items: center; }
+  .site-nav a { white-space: nowrap; }
+  .site-nav a { border: 0; padding: .4rem 0; font-size: .93rem; position: relative; }
+  .site-nav a::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 2px;
+    background: var(--c-terre); transform: scaleX(0); transition: transform .3s; transform-origin: left;
+  }
+  .site-nav a:hover::after, .site-nav a[aria-current="page"]::after { transform: scaleX(1); }
+  .site-nav .btn { display: none; }
+  .header-appel { display: inline-flex; padding: .6rem 1.1rem; font-size: .95rem; white-space: nowrap; flex-wrap: nowrap; }
+  .site-header .container { max-width: 1340px; }
+}
+
+/* =====================================================================
+   5. Barre d'appel fixe (mobile uniquement)
+   ===================================================================== */
+.callbar {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 60;
+  padding: .6rem var(--gouttiere) calc(.6rem + env(safe-area-inset-bottom));
+  background: rgba(250, 245, 236, .97);
+  border-top: 1px solid var(--c-lin);
+  box-shadow: 0 -8px 24px -12px rgba(62, 42, 31, .3);
+}
+.callbar .btn { width: 100%; }
+@media (min-width: 900px) { .callbar { display: none; } }
+
+/* =====================================================================
+   6. Sections génériques
+   ===================================================================== */
+.section { padding: var(--section-y) 0; }
+.section--sable { background: var(--c-sable); }
+.section__entete { max-width: 680px; margin: 0 auto 2.8rem; text-align: center; }
+.section__entete p { color: var(--c-bois); }
+.chapeau { font-size: 1.15rem; color: var(--c-bois); }
+
+/* En-tête des pages intérieures */
+.page-hero {
+  position: relative; overflow: hidden;
+  padding: clamp(3rem, 9vw, 6rem) 0 clamp(2.5rem, 6vw, 4rem);
+  text-align: center;
+}
+.page-hero p { max-width: 640px; margin-left: auto; margin-right: auto; }
+.fil-ariane { font-size: .88rem; color: var(--c-bois); margin-bottom: 1rem; }
+.fil-ariane ol { list-style: none; padding: 0; margin: 0; display: flex; justify-content: center; flex-wrap: wrap; gap: .4rem; }
+.fil-ariane li + li::before { content: "›"; margin-right: .4rem; }
+.fil-ariane a { color: var(--c-bois); }
+
+/* Grilles */
+.grille { display: grid; gap: clamp(1.25rem, 3vw, 2rem); }
+@media (min-width: 680px)  { .grille--2, .grille--3 { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1000px) { .grille--3 { grid-template-columns: repeat(3, 1fr); } }
+
+/* Bloc image + texte */
+.duo { display: grid; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+@media (min-width: 900px) {
+  .duo { grid-template-columns: 1fr 1fr; }
+  .duo--inverse .duo__media { order: 2; }
+}
+.duo__media img { border-radius: var(--radius); box-shadow: var(--ombre); width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+
+/* Listes à puces tiaré */
+.liste-tiare { list-style: none; padding: 0; margin: 0 0 1.4em; }
+.liste-tiare li { position: relative; padding-left: 1.9rem; margin-bottom: .55rem; }
+.liste-tiare li::before {
+  content: ""; position: absolute; left: 0; top: .35em; width: 16px; height: 16px;
+  background: url("../images/motifs/tiare.svg") center / contain no-repeat;
+}
+
+/* =====================================================================
+   7. Accueil — grand visuel
+   ===================================================================== */
+.hero {
+  position: relative; isolation: isolate;
+  min-height: min(88vh, 760px);
+  display: flex; align-items: flex-end;
+  color: #fff;
+  overflow: hidden;
+}
+.hero__img { position: absolute; inset: 0; z-index: -2; }
+.hero__img img { width: 100%; height: 100%; object-fit: cover; object-position: center 40%; }
+.hero::before {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(180deg, rgba(62,42,31,.15) 0%, rgba(62,42,31,.55) 55%, rgba(40,26,18,.85) 100%);
+}
+.hero__contenu { padding-top: 6rem; padding-bottom: clamp(2.5rem, 7vw, 5rem); max-width: 760px; }
+.hero h1 { color: #fff; margin-bottom: .4em; }
+.hero h1 em { font-style: italic; font-weight: 500; color: #F6DCC6; }
+.hero p { font-size: 1.15rem; max-width: 560px; color: #FBF4EA; }
+.hero .ornement { color: #E8F3EE; }
+.hero__badges { display: flex; flex-wrap: wrap; gap: .5rem; margin: 0 0 1.6rem; padding: 0; list-style: none; }
+.hero__badges li {
+  font-size: .85rem; font-weight: 600; padding: .35rem .9rem; border-radius: var(--radius-pill);
+  background: rgba(255, 253, 248, .16); border: 1px solid rgba(255, 253, 248, .45);
+}
+
+/* Bandeau Taurumi */
+.taurumi-vedette { position: relative; }
+@media (min-width: 900px) { .taurumi-vedette .duo__media::after { right: -14px; width: 110px; height: 110px; } }
+.taurumi-vedette .duo__media { position: relative; }
+.taurumi-vedette .duo__media::after {
+  content: ""; position: absolute; right: 8px; bottom: -14px; width: 90px; height: 90px;
+  background: url("../images/motifs/tiare.svg") center / contain no-repeat; opacity: .9;
+  pointer-events: none;
+}
+.etiquette {
+  display: inline-block; font-size: .78rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+  padding: .3rem .8rem; border-radius: var(--radius-pill);
+  background: var(--c-vert); color: #fff;
+}
+
+/* =====================================================================
+   8. Cartes
+   ===================================================================== */
+.carte {
+  background: var(--c-tiare);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 2px 0 var(--c-lin), var(--ombre);
+  display: flex; flex-direction: column;
+  transition: transform .3s;
+}
+.carte:hover { transform: translateY(-4px); }
+.carte__media { aspect-ratio: 3 / 2; overflow: hidden; background: var(--c-lin); }
+.carte__media img { width: 100%; height: 100%; object-fit: cover; }
+.carte__corps { padding: 1.5rem 1.5rem 1.75rem; display: flex; flex-direction: column; flex: 1; }
+.carte__corps p { color: var(--c-bois); }
+.carte__origine {
+  font-size: .8rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--c-vert); margin-bottom: .35rem;
+}
+.carte__lien { margin-top: auto; font-weight: 700; }
+.carte--vedette { outline: 2px solid var(--c-terre); outline-offset: -2px; }
+@media (min-width: 1000px) {
+  .carte--vedette { grid-column: span 2; flex-direction: row; }
+  .carte--vedette .carte__media { flex: 1 1 50%; aspect-ratio: auto; min-height: 100%; }
+  .carte--vedette .carte__corps { flex: 1 1 50%; }
+}
+
+/* Détails d'un massage (origine / déroulé / ressenti) */
+.details-massage { margin: 0 0 1.2rem; }
+.details-massage dt { font-weight: 700; color: var(--c-chocolat); font-size: .92rem; margin-top: .6rem; }
+.details-massage dd { margin: 0; color: var(--c-bois); }
+
+/* Tarifs */
+.tarifs { display: flex; flex-wrap: wrap; gap: .6rem; margin: .4rem 0 1.2rem; padding: 0; list-style: none; }
+.tarifs li {
+  display: flex; align-items: baseline; gap: .4rem;
+  padding: .45rem 1rem; border-radius: var(--radius-pill);
+  background: var(--c-sable); font-size: .95rem;
+}
+.tarifs strong { font-variant-numeric: lining-nums; font-family: var(--f-titre); font-size: 1.35rem; color: var(--c-terre-fonce); }
+
+.grille-tarifs { display: grid; gap: 1.25rem; max-width: 640px; margin: 0 auto; }
+@media (min-width: 560px) { .grille-tarifs { grid-template-columns: 1fr 1fr; } }
+.tarif-bloc {
+  background: var(--c-tiare); border-radius: var(--radius); padding: 2rem 1.5rem; text-align: center;
+  border: 1px solid var(--c-lin);
+}
+.tarif-bloc__duree { font-weight: 700; letter-spacing: .1em; text-transform: uppercase; font-size: .85rem; color: var(--c-bois); }
+.tarif-bloc__prix { font-variant-numeric: lining-nums; font-family: var(--f-titre); font-size: 3.2rem; font-weight: 600; color: var(--c-terre-fonce); line-height: 1.1; }
+
+/* Étapes (déroulé d'une séance) */
+.etapes { list-style: none; padding: 0; margin: 0; counter-reset: etape; display: grid; gap: 1.25rem; }
+@media (min-width: 800px) { .etapes { grid-template-columns: repeat(2, 1fr); } }
+.etapes li {
+  counter-increment: etape; position: relative;
+  background: var(--c-tiare); border-radius: var(--radius); padding: 1.5rem 1.5rem 1.5rem 4.6rem;
+  border: 1px solid rgba(217, 199, 167, .7);
+}
+.etapes li::before {
+  content: counter(etape);
+  position: absolute; left: 1.3rem; top: 1.35rem;
+  width: 2.4rem; height: 2.4rem; border-radius: 50%;
+  display: grid; place-items: center;
+  font-family: var(--f-titre); font-size: 1.35rem; font-weight: 600;
+  background: var(--c-sable); color: var(--c-terre-fonce);
+}
+.etapes h3 { font-size: 1.3rem; margin-bottom: .3rem; }
+.etapes p { margin: 0; color: var(--c-bois); }
+
+/* =====================================================================
+   9. Formations (contenu d'exemple)
+   ===================================================================== */
+.formation { position: relative; }
+.badge-exemple {
+  display: inline-flex; align-items: center; gap: .4rem;
+  align-self: flex-start;
+  font-size: .78rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+  padding: .35rem .8rem; border-radius: var(--radius-pill);
+  background: var(--c-exemple); color: #7A3A1F; border: 1px dashed #B65F3C;
+  margin-bottom: .9rem;
+}
+.formation--exemple { background-image: repeating-linear-gradient(-45deg, transparent 0 14px, rgba(182, 95, 60, .035) 14px 28px); }
+.infos-formation { display: grid; grid-template-columns: auto 1fr; gap: .3rem 1rem; margin: 0 0 1.3rem; font-size: .95rem; }
+.infos-formation dt { font-weight: 700; color: var(--c-chocolat); }
+.infos-formation dd { margin: 0; color: var(--c-bois); }
+.alerte-exemple {
+  background: var(--c-exemple); border: 1px dashed var(--c-terre); border-radius: var(--radius);
+  padding: 1rem 1.25rem; margin: 0 auto 2.5rem; max-width: 780px; text-align: center; color: #5E2E18;
+}
+
+/* =====================================================================
+   10. Aperçu des 3 pratiques (accueil)
+   ===================================================================== */
+.pratique { text-align: left; }
+.pratique .carte__media { aspect-ratio: 4 / 3; }
+
+/* Bandeau « au salon ou à domicile » */
+.lieux { display: grid; gap: 1.25rem; }
+@media (min-width: 760px) { .lieux { grid-template-columns: 1fr 1fr; } }
+.lieu {
+  background: var(--c-tiare); border-radius: var(--radius); padding: 1.75rem;
+  border: 1px solid var(--c-lin); display: flex; gap: 1rem; align-items: flex-start;
+}
+.lieu svg { width: 36px; height: 36px; flex: none; color: var(--c-vert); }
+.lieu h3 { font-size: 1.4rem; margin-bottom: .3rem; }
+.lieu p { margin: 0; color: var(--c-bois); }
+
+/* =====================================================================
+   11. Bandeau d'appel (bas de chaque page)
+   ===================================================================== */
+.cta {
+  position: relative; overflow: hidden;
+  background: var(--c-chocolat); color: #F7EEE2;
+  border-radius: var(--radius);
+  padding: clamp(2.5rem, 6vw, 4rem) clamp(1.5rem, 5vw, 4rem);
+  text-align: center;
+}
+.cta::before {
+  content: ""; position: absolute; inset: 0; opacity: .12; pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cg fill='none' stroke='%23F6DCC6' stroke-width='1'%3E%3Cpath d='M0 15 L15 0 L30 15 L45 0 L60 15'/%3E%3Cpath d='M0 45 L15 30 L30 45 L45 30 L60 45'/%3E%3C/g%3E%3C/svg%3E");
+}
+.cta > * { position: relative; }
+.cta h2 { color: #fff; }
+.cta p { max-width: 560px; margin-left: auto; margin-right: auto; color: #EADBC8; }
+.cta .groupe-btn { justify-content: center; }
+.cta .btn--appel { background: var(--c-tiare); color: var(--c-chocolat); }
+.cta .btn--appel:hover { background: #fff; color: var(--c-terre-fonce); }
+.cta a:not(.btn) { color: #F6DCC6; }
+
+/* =====================================================================
+   12. FAQ (accordéons natifs <details>)
+   ===================================================================== */
+.faq-groupe { margin-bottom: 2.5rem; }
+.faq-groupe h2 { font-size: clamp(1.6rem, 3.5vw, 2.1rem); }
+.faq details {
+  background: var(--c-tiare); border: 1px solid var(--c-lin); border-radius: var(--radius-sm);
+  margin-bottom: .75rem;
+}
+.faq summary {
+  list-style: none; cursor: pointer;
+  padding: 1.1rem 3.2rem 1.1rem 1.25rem; position: relative;
+  font-weight: 700; color: var(--c-chocolat);
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after {
+  content: "+"; position: absolute; right: 1.25rem; top: 50%; transform: translateY(-50%);
+  font-family: var(--f-titre); font-size: 1.8rem; line-height: 1; color: var(--c-terre-fonce);
+  transition: transform .3s;
+}
+.faq details[open] summary::after { transform: translateY(-50%) rotate(45deg); }
+.faq .reponse { padding: 0 1.25rem 1.2rem; color: var(--c-bois); }
+.faq .reponse p:last-child { margin-bottom: 0; }
+
+/* =====================================================================
+   13. Contact & carte
+   ===================================================================== */
+.coordonnees { list-style: none; padding: 0; margin: 0 0 1.5rem; }
+.coordonnees li { display: flex; gap: .9rem; align-items: flex-start; padding: .9rem 0; border-bottom: 1px solid var(--c-lin); }
+.coordonnees svg { width: 24px; height: 24px; flex: none; color: var(--c-terre-fonce); margin-top: .2rem; }
+.coordonnees strong { display: block; }
+.carte-plan {
+  border-radius: var(--radius); overflow: hidden; border: 1px solid var(--c-lin); box-shadow: var(--ombre);
+  background: var(--c-sable);
+}
+.carte-plan iframe { display: block; width: 100%; height: 380px; border: 0; }
+.carte-plan figcaption { padding: .75rem 1rem; font-size: .9rem; color: var(--c-bois); background: var(--c-tiare); }
+
+/* =====================================================================
+   14. Pages texte (mentions légales, confidentialité)
+   ===================================================================== */
+.prose h2 { font-size: clamp(1.5rem, 3vw, 1.9rem); margin-top: 2.2rem; }
+.prose ul { padding-left: 1.2rem; }
+.a-completer {
+  background: var(--c-exemple); color: #6B3219; padding: 0 .35em; border-radius: 4px;
+  font-weight: 700; white-space: normal;
+}
+
+/* =====================================================================
+   15. Pied de page
+   ===================================================================== */
+.site-footer {
+  background: #2E1F17; color: #E8DCCB; margin-top: var(--section-y);
+  padding: 3.5rem 0 2rem; font-size: .95rem;
+}
+.site-footer .frise-tapa { margin-bottom: 2.5rem; opacity: .8; }
+.site-footer a { color: #F6DCC6; }
+.site-footer a:hover { color: #fff; }
+.footer-grille { display: grid; gap: 2rem; }
+@media (min-width: 760px) { .footer-grille { grid-template-columns: 1.3fr 1fr 1fr; } }
+.site-footer h2 { font-size: 1.3rem; color: #fff; margin-bottom: .8rem; font-family: var(--f-titre); }
+.site-footer ul { list-style: none; padding: 0; margin: 0; }
+.site-footer li { margin-bottom: .45rem; }
+.footer-bas {
+  margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(232, 220, 203, .2);
+  display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; justify-content: space-between; font-size: .85rem; color: #CDBBA6;
+}
+.footer-bas a { color: #CDBBA6; }
+.lien-insta { display: inline-flex; align-items: center; gap: .5rem; }
+.lien-insta svg { width: 20px; height: 20px; }
+
+/* =====================================================================
+   16. Animations très légères d'apparition au scroll
+   (activées uniquement si JavaScript est présent : classe .js sur <html>)
+   ===================================================================== */
+.js .reveal { opacity: 0; transform: translateY(18px); transition: opacity .8s ease, transform .8s ease; }
+.js .reveal.est-visible { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .js .reveal { opacity: 1; transform: none; } }
+
+/* Utilitaires */
+.centre { text-align: center; }
+.mt-2 { margin-top: 2rem; }
+.mb-0 { margin-bottom: 0; }
+.texte-bois { color: var(--c-bois); }

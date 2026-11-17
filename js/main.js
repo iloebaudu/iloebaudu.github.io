@@ -174,9 +174,10 @@
 
   /* -------------------------------------------------------------------
      7. Manège de cartes des massages (accueil)
-     Les 10 cartes sont réparties sur un arc ; elles suivent la souris :
-     en déplaçant la souris de gauche à droite on fait tourner le manège
-     (balayage du doigt sur téléphone, flèches et clavier aussi).
+     Les cartes sont réparties sur un arc ; elles suivent la souris :
+     chaque déplacement horizontal fait tourner le manège, sans fin
+     (le défilement boucle). Balayage du doigt sur téléphone, flèches,
+     clavier et molette horizontale fonctionnent aussi.
      Aucun défilement automatique. Version sans dépendance.
      Cartes générées depuis data/massages.js (nom, origine, image, imagePos, vedette).
      ------------------------------------------------------------------- */
@@ -192,6 +193,7 @@
     var n = massages.length, DEMI = n / 2;
     var ESPACE = 60 / n;              // écart entre deux cartes, en rem (largeur totale constante)
     var PX_PAR_CARTE = 100;           // balayage tactile : pixels à parcourir pour avancer d'une carte
+    var PX_SOURIS = 110;              // souris : pixels à parcourir pour avancer d'une carte (plus petit = plus rapide)
     var FLUIDITE = 6;                 // plus élevé = le manège rattrape plus vite la souris
     var reduit = !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
 
@@ -217,7 +219,7 @@
 
     var t = 0;                 // position affichée du manège (en cartes) ; la carte « t » est au centre
     var cible = 0;             // position visée (souris, doigt, flèches) : t la rattrape en douceur
-    var survole = false, decalage = 0, survolIdx = -1, glisse = null;
+    var survole = false, derniereX = 0, survolIdx = -1, glisse = null, minuteurRoue = 0;
     var t0 = null, introFini = reduit;
     var raf = 0, dernier = 0, centreAffiche = -1, demarre = false;
 
@@ -270,21 +272,16 @@
     function demarrer() { if (!raf) { dernier = performance.now(); raf = requestAnimationFrame(boucle); } }
     function arreter() { if (raf) { cancelAnimationFrame(raf); raf = 0; } }
 
-    /* --- La souris pilote le manège : gauche = début de la liste, droite = fin --- */
-    function positionSouris(clientX) {
-      var r = scene.getBoundingClientRect();
-      var u = clamp((clientX - r.left) / r.width, 0, 1);
-      return clamp((u - 0.1) / 0.8, 0, 1) * (n - 1);   // les 10 % de chaque bord servent de marge
-    }
+    /* --- La souris fait tourner le manège : chaque déplacement horizontal l'entraîne, sans limite --- */
     scene.addEventListener("pointerenter", function (e) {
       if (e.pointerType !== "mouse") return;
       survole = true;
-      var m = positionSouris(e.clientX);
-      decalage = n * Math.round((cible - m) / n);       // évite un grand tour en arrière à l'entrée
-      cible = m + decalage;
+      derniereX = e.clientX;
     });
     scene.addEventListener("pointermove", function (e) {
-      if (e.pointerType === "mouse" && survole) cible = positionSouris(e.clientX) + decalage;
+      if (e.pointerType !== "mouse" || !survole) return;
+      cible += (e.clientX - derniereX) / PX_SOURIS;     // vers la droite : cartes suivantes ; vers la gauche : précédentes
+      derniereX = e.clientX;
     });
     scene.addEventListener("pointerleave", function (e) {
       if (e.pointerType !== "mouse") return;
@@ -295,6 +292,14 @@
       el.addEventListener("pointerenter", function (e) { if (e.pointerType === "mouse") survolIdx = el._i; });
       el.addEventListener("pointerleave", function (e) { if (e.pointerType === "mouse" && survolIdx === el._i) survolIdx = -1; });
     });
+
+    scene.addEventListener("wheel", function (e) {        // défilement horizontal au pavé tactile ou à la molette
+      if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;   // le défilement vertical de la page reste normal
+      e.preventDefault();
+      cible += e.deltaX / 150;
+      clearTimeout(minuteurRoue);
+      minuteurRoue = setTimeout(function () { if (!survole) cible = Math.round(cible); }, 250);
+    }, { passive: false });
 
     /* --- Balayage du doigt --- */
     scene.addEventListener("touchstart", function (e) {

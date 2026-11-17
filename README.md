@@ -58,7 +58,7 @@ Toujours dans **`data/massages.js`**, chaque massage est un bloc `{ ... }` :
 - **retirer un massage** : supprimez le bloc `{ ... },` en entier ;
 - **ajouter un massage** : copiez un bloc existant, collez-le à la suite et adaptez-le (avec un `id` unique, sans espace ni accent) ;
 - **mettre un massage en avant** : `vedette: true` (le Taurumi actuellement).
-- **éventail de cartes de l'accueil** : il est généré automatiquement à partir de la même liste (nom, origine, photo `image`, cadrage `imagePos`). L'étiquette « Recommandé » apparaît sur le massage qui a `vedette: true`. Les 10 cartes suivent la souris (balayage du doigt sur téléphone) ; il n'y a pas de défilement automatique. La réactivité se règle avec `FLUIDITE` dans `js/main.js`.
+- **éventail de cartes de l'accueil** : il est généré automatiquement à partir de la même liste (nom, origine, photo `image`, cadrage `imagePos`). L'étiquette « Recommandé » apparaît sur le massage qui a `vedette: true`. Les cartes suivent la souris, avec un défilement infini (balayage du doigt sur téléphone) ; il n'y a pas de défilement automatique. La réactivité se règle avec `FLUIDITE` dans `js/main.js`.
 
 ## 4. Modifier les formations
 

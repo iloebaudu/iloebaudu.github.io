@@ -154,6 +154,24 @@
     blocs.forEach(function (b) { b.classList.add("est-visible"); });
   }
 
+  /* -------------------------------------------------------------------
+     6. Carte Google Maps chargée seulement au clic (respect du RGPD)
+     ------------------------------------------------------------------- */
+  document.querySelectorAll("[data-gmaps]").forEach(function (ecran) {
+    var bouton = ecran.querySelector("button");
+    if (!bouton) return;
+    bouton.addEventListener("click", function () {
+      var iframe = document.createElement("iframe");
+      iframe.src = ecran.getAttribute("data-gmaps");
+      iframe.title = "Carte Google Maps : salon d'Isabelle Di Nunzio à Les Mages";
+      iframe.loading = "lazy";
+      iframe.referrerPolicy = "no-referrer-when-downgrade";
+      iframe.setAttribute("allowfullscreen", "");
+      ecran.replaceWith(iframe);
+      iframe.focus();
+    });
+  });
+
   /* Année automatique dans le pied de page */
   document.querySelectorAll("[data-annee]").forEach(function (el) { el.textContent = new Date().getFullYear(); });
 })();

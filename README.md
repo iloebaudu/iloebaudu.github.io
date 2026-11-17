@@ -10,7 +10,7 @@ massages-du-monde.html         Massages du monde (cartes générées depuis data
 reflexologie.html              Réflexologie
 formations.html                Formations (cartes générées depuis data/formations.js)
 a-propos.html                  À propos
-salon-domicile-contact.html    Salon & domicile / Contact (carte OpenStreetMap)
+salon-domicile-contact.html    Salon & domicile / Contact (carte Google Maps, chargée au clic)
 faq.html                       Questions fréquentes
 mentions-legales.html          Mentions légales
 politique-confidentialite.html Politique de confidentialité

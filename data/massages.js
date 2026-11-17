@@ -16,7 +16,7 @@
    ===================================================================== */
 
 window.TARIFS = [
-  // Même grille pour tous les massages et la réflexologie.
+  // Même grille pour tous les massages (et la réflexologie, qui a sa propre page).
   { duree: "1 h",     prix: 60 },
   { duree: "1 h 30",  prix: 80 }
 ];
@@ -128,17 +128,5 @@ window.MASSAGES = [
     deroule: "Allongé·e à la surface de l'eau et soutenu·e en permanence, vous êtes bercé·e, étiré·e et accompagné·e dans des mouvements lents et fluides. En été, dans ma piscine au jardin ; toute l'année, chez vous, dans votre piscine chauffée (intérieure, ou extérieure en été).",
     ressenti: "Une sensation de légèreté et de flottement, un lâcher-prise profond, comme suspendu·e hors du temps.",
     tarifTexte: "Tarif selon le lieu et la durée : renseignez-vous par téléphone."   // remplace la grille de prix sur cette carte
-  },
-  {
-    id: "reflexologie-plantaire",
-    nom: "Réflexologie plantaire",
-    origine: "Traditions du monde",
-    image: "images/reflexologie-pieds-fleurs-800.jpg",
-    imageAlt: "Pieds posés dans une vasque décorée de fleurs de frangipanier",
-    accroche: "Une détente globale à partir des pieds.",
-    origineTexte: "Inspirée de pratiques anciennes d'Asie et d'Égypte, la réflexologie plantaire a été structurée au XXe siècle.",
-    deroule: "Des pressions précises et des lissages sont réalisés sur les différentes zones de la voûte plantaire, confortablement installé·e et habillé·e.",
-    ressenti: "Une détente qui se diffuse dans tout le corps, une sensation de légèreté et d'apaisement.",
-    lien: "reflexologie.html"            // (optionnel) lien vers une page dédiée
   }
 ];

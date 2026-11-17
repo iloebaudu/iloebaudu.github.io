@@ -522,7 +522,7 @@ a:hover { color: var(--c-chocolat); }
 }
 .fan__btn:hover { background: rgba(255, 253, 248, .18); border-color: rgba(255, 253, 248, .7); }
 .fan__btn svg { width: 20px; height: 20px; }
-.fan__points { display: flex; gap: .5rem; }
+.fan__points { display: flex; justify-content: center; gap: .5rem; margin-top: 1rem; }
 .fan__points span { width: 8px; height: 8px; border-radius: 50%; background: rgba(255, 253, 248, .28); transition: transform .3s, background-color .3s; }
 .fan__points span.est-actif { background: var(--c-tiare); transform: scale(1.3); }
 

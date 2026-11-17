@@ -490,6 +490,10 @@ a:hover { color: var(--c-chocolat); }
   color: #fff; text-decoration: none; opacity: 0; will-change: transform;
 }
 .fan-card.is-hors { visibility: hidden; pointer-events: none; }
+/* Le texte reste blanc au survol, au clic et au focus (la règle générale « a:hover » le passerait en marron) */
+.fan-card:hover, .fan-card:focus, .fan-card:active, .fan-card:visited { color: #fff; }
+.fan-card:hover, .fan-card:focus-visible { border-color: #fff; box-shadow: 0 0 0 3px rgba(255, 253, 248, .45), 0 22px 44px -14px rgba(0, 0, 0, .85); }
+.fan-card:active .fan-card__nom { text-decoration: underline; text-underline-offset: 3px; }
 .fan-card:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
 .fan-card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; user-select: none; -webkit-user-drag: none; }
 .fan-card__legende {

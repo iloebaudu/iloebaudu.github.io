@@ -174,10 +174,11 @@
 
   /* -------------------------------------------------------------------
      7. Manège de cartes des massages (accueil)
-     Les cartes tournent en continu sur un arc, toutes visibles à la fois.
-     Version sans dépendance : animation par requestAnimationFrame.
+     Les 10 cartes sont réparties sur un arc ; elles suivent la souris :
+     en déplaçant la souris de gauche à droite on fait tourner le manège
+     (balayage du doigt sur téléphone, flèches et clavier aussi).
+     Aucun défilement automatique. Version sans dépendance.
      Cartes générées depuis data/massages.js (nom, origine, image, imagePos, vedette).
-     Pause : survol, toucher, focus clavier ou bouton pause.
      ------------------------------------------------------------------- */
   (function () {
     var racine = document.querySelector("[data-fan]");
@@ -187,15 +188,15 @@
     var scene = racine.querySelector(".fan__scene");
     var points = racine.querySelector(".fan__points");
     var annonce = racine.querySelector("[data-fan-annonce]");
-    var btnPause = racine.querySelector("[data-fan-pause]");
 
     var n = massages.length, DEMI = n / 2;
-    var VITESSE = 0.35;               // vitesse de rotation, en cartes par seconde (0.2 = plus lent, 0.6 = plus rapide)
     var ESPACE = 60 / n;              // écart entre deux cartes, en rem (largeur totale constante)
+    var PX_PAR_CARTE = 100;           // balayage tactile : pixels à parcourir pour avancer d'une carte
+    var FLUIDITE = 6;                 // plus élevé = le manège rattrape plus vite la souris
     var reduit = !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
 
     /* Cartes (liens vers la fiche du massage) */
-    var cartes = massages.map(function (m) {
+    var cartes = massages.map(function (m, i) {
       var a = document.createElement("a");
       a.className = "fan-card";
       a.href = "massages-du-monde.html#" + m.id;
@@ -207,16 +208,16 @@
         (m.vedette ? '<span class="fan-card__badge">Recommandé</span>' : "") +
         '<span class="fan-card__legende"><span class="fan-card__nom">' + esc(m.nom) +
         '</span><span class="fan-card__origine">' + esc(m.origine) + "</span></span>";
+      a._i = i;
       a._h = 0;                                     // niveau de survol lissé (0 à 1)
       scene.appendChild(a);
       return a;
     });
     massages.forEach(function () { points.appendChild(document.createElement("span")); });
 
-    var t = 0;                 // position du manège (en cartes) ; la carte « t » est au centre
-    var pause = reduit;        // pause demandée (bouton) ou imposée par « réduire les animations »
-    var survole = false, touche = false, dedans = false, survolIdx = -1;
-    var anim = null;           // déplacement manuel en cours
+    var t = 0;                 // position affichée du manège (en cartes) ; la carte « t » est au centre
+    var cible = 0;             // position visée (souris, doigt, flèches) : t la rattrape en douceur
+    var survole = false, decalage = 0, survolIdx = -1, glisse = null;
     var t0 = null, introFini = reduit;
     var raf = 0, dernier = 0, centreAffiche = -1, demarre = false;
 
@@ -232,11 +233,12 @@
       var m = mult(), enIntro = !introFini;
       if (t0 === null) t0 = now;
       var ecoule = now - t0;
-      cartes.forEach(function (el, i) {
-        var p = wrap(i - t), ap = Math.abs(p), d = p / DEMI;
+      var calme = Math.abs(cible - t) < 0.12;          // la carte survolée ne se lève que lorsque le manège est stable
+      cartes.forEach(function (el) {
+        var i = el._i, p = wrap(i - t), ap = Math.abs(p), d = p / DEMI;
         var x = p * ESPACE * m, y = d * d * 7.3, rot = d * 21, sc = 1 - 0.2244 * d * d;
         var op = clamp((DEMI - ap) / 0.6, 0, 1);      // les cartes s'effacent en douceur au « raccord » du manège
-        el._h += ((survolIdx === cartes.indexOf(el) ? 1 : 0) - el._h) * 0.18;
+        el._h += ((survolIdx === i && calme ? 1 : 0) - el._h) * 0.18;
         y -= 2.5 * el._h;
         sc *= 1 + 0.08 * el._h;
         var z = Math.round((DEMI - ap) * 20) + 1 + (el._h > 0.5 ? 200 : 0);
@@ -262,30 +264,62 @@
       raf = requestAnimationFrame(boucle);
       var dt = Math.min(0.05, (now - dernier) / 1000);
       dernier = now;
-      if (anim) {
-        var k = clamp((now - anim.debut) / anim.duree, 0, 1);
-        t = anim.de + (anim.vers - anim.de) * (k < 0.5 ? 4 * k * k * k : 1 - Math.pow(-2 * k + 2, 3) / 2);
-        if (k >= 1) anim = null;
-      } else if (introFini && !pause && !survole && !touche && !dedans) {
-        t += VITESSE * dt;
-      }
+      t = reduit ? cible : t + (cible - t) * (1 - Math.exp(-dt * FLUIDITE));
       dessiner(now);
     }
     function demarrer() { if (!raf) { dernier = performance.now(); raf = requestAnimationFrame(boucle); } }
     function arreter() { if (raf) { cancelAnimationFrame(raf); raf = 0; } }
 
-    /* Déplacements manuels (flèches, clavier, balayage, focus) */
-    function allerA(cible) {
-      if (reduit) { t = cible; anim = null; return; }
-      anim = { de: t, vers: cible, debut: performance.now(), duree: 700 };
+    /* --- La souris pilote le manège : gauche = début de la liste, droite = fin --- */
+    function positionSouris(clientX) {
+      var r = scene.getBoundingClientRect();
+      var u = clamp((clientX - r.left) / r.width, 0, 1);
+      return clamp((u - 0.1) / 0.8, 0, 1) * (n - 1);   // les 10 % de chaque bord servent de marge
     }
+    scene.addEventListener("pointerenter", function (e) {
+      if (e.pointerType !== "mouse") return;
+      survole = true;
+      var m = positionSouris(e.clientX);
+      decalage = n * Math.round((cible - m) / n);       // évite un grand tour en arrière à l'entrée
+      cible = m + decalage;
+    });
+    scene.addEventListener("pointermove", function (e) {
+      if (e.pointerType === "mouse" && survole) cible = positionSouris(e.clientX) + decalage;
+    });
+    scene.addEventListener("pointerleave", function (e) {
+      if (e.pointerType !== "mouse") return;
+      survole = false; survolIdx = -1;
+      cible = Math.round(cible);                        // une carte vient se placer au centre
+    });
+    cartes.forEach(function (el) {
+      el.addEventListener("pointerenter", function (e) { if (e.pointerType === "mouse") survolIdx = el._i; });
+      el.addEventListener("pointerleave", function (e) { if (e.pointerType === "mouse" && survolIdx === el._i) survolIdx = -1; });
+    });
+
+    /* --- Balayage du doigt --- */
+    scene.addEventListener("touchstart", function (e) {
+      glisse = { x: e.touches[0].clientX, y: e.touches[0].clientY, depart: cible, actif: false };
+    }, { passive: true });
+    scene.addEventListener("touchmove", function (e) {
+      if (!glisse) return;
+      var dx = e.touches[0].clientX - glisse.x, dy = e.touches[0].clientY - glisse.y;
+      if (!glisse.actif && Math.abs(dx) > 8 && Math.abs(dx) > Math.abs(dy)) glisse.actif = true;
+      if (glisse.actif) cible = glisse.depart - dx / PX_PAR_CARTE;
+    }, { passive: true });
+    function finGlisse() {
+      if (glisse && glisse.actif) cible = Math.round(cible);
+      glisse = null;
+    }
+    scene.addEventListener("touchend", finGlisse, { passive: true });
+    scene.addEventListener("touchcancel", finGlisse, { passive: true });
+
+    /* --- Flèches et clavier --- */
     function annoncer(valeur) {
       var i = ((Math.round(valeur) % n) + n) % n;
       if (annonce) annonce.textContent = massages[i].nom + " (" + (i + 1) + " sur " + n + ")";
     }
     function relatif(dir) {
-      var cible = (anim ? anim.vers : Math.round(t)) + dir;
-      allerA(cible);
+      cible = Math.round(cible) + dir;
       annoncer(cible);
     }
     racine.querySelector("[data-fan-prec]").addEventListener("click", function () { relatif(-1); });
@@ -294,44 +328,14 @@
       if (e.key === "ArrowRight") relatif(1);
       else if (e.key === "ArrowLeft") relatif(-1);
     });
-
-    /* Bouton pause / lecture (nécessaire pour l'accessibilité d'un contenu qui bouge) */
-    var ICONE_PAUSE = '<svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';
-    var ICONE_LECTURE = '<svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg>';
-    function majPause() {
-      btnPause.setAttribute("aria-pressed", String(pause));
-      btnPause.setAttribute("aria-label", pause ? "Reprendre le défilement" : "Mettre le défilement en pause");
-      btnPause.innerHTML = pause ? ICONE_LECTURE : ICONE_PAUSE;
-    }
-    btnPause.addEventListener("click", function () { pause = !pause; majPause(); });
-    majPause();
-
-    /* Pause au survol (souris), au toucher et au focus clavier */
-    scene.addEventListener("pointerenter", function (e) { if (e.pointerType === "mouse") survole = true; });
-    scene.addEventListener("pointerleave", function (e) { if (e.pointerType === "mouse") { survole = false; survolIdx = -1; } });
-    cartes.forEach(function (el, i) {
-      el.addEventListener("pointerenter", function (e) { if (e.pointerType === "mouse") survolIdx = i; });
-      el.addEventListener("pointerleave", function (e) { if (e.pointerType === "mouse" && survolIdx === i) survolIdx = -1; });
+    scene.addEventListener("focusin", function (e) {      // au clavier, la carte qui reçoit le focus vient au centre
+      var carte = e.target.closest ? e.target.closest(".fan-card") : null;
+      var visibleClavier = true;
+      try { visibleClavier = e.target.matches(":focus-visible"); } catch (err) { /* navigateur ancien */ }
+      if (carte && visibleClavier) cible = cible + wrap(carte._i - cible);
     });
-    scene.addEventListener("focusin", function (e) {
-      dedans = true;
-      var i = cartes.indexOf(e.target.closest ? e.target.closest(".fan-card") : null);
-      if (i >= 0) allerA(t + wrap(i - t));          // la carte qui reçoit le focus vient au centre
-    });
-    scene.addEventListener("focusout", function (e) { if (!scene.contains(e.relatedTarget)) dedans = false; });
 
-    var x0 = null;
-    scene.addEventListener("touchstart", function (e) { touche = true; x0 = e.touches[0].clientX; }, { passive: true });
-    scene.addEventListener("touchend", function (e) {
-      touche = false;
-      if (x0 === null) return;
-      var dx = e.changedTouches[0].clientX - x0;
-      x0 = null;
-      if (Math.abs(dx) > 50) relatif(dx < 0 ? 1 : -1);
-    }, { passive: true });
-    scene.addEventListener("touchcancel", function () { touche = false; x0 = null; }, { passive: true });
-
-    /* Le manège ne tourne que lorsqu'il est à l'écran */
+    /* Le manège ne s'anime que lorsqu'il est à l'écran */
     if ("IntersectionObserver" in window) {
       new IntersectionObserver(function (es) {
         if (es[0].isIntersecting) { if (!demarre) { demarre = true; t0 = null; } demarrer(); }

@@ -16,9 +16,14 @@
    ===================================================================== */
 
 window.TARIFS = [
-  // Même grille pour tous les massages (et la réflexologie, qui a sa propre page).
+  // Grille des massages (même tarif pour tous les massages).
   { duree: "1 h",     prix: 60 },
   { duree: "1 h 30",  prix: 80 }
+];
+
+// La réflexologie plantaire a son propre tarif : une seule durée.
+window.TARIFS_REFLEXOLOGIE = [
+  { duree: "1 h", prix: 60 }
 ];
 
 window.MASSAGES = [

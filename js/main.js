@@ -40,20 +40,23 @@
   /* -------------------------------------------------------------------
      2. Tarifs : tout élément <ul data-tarifs> reçoit la grille de prix
      ------------------------------------------------------------------- */
-  function htmlTarifs() {
-    return (window.TARIFS || []).map(function (t) {
+  function tarifsDe(source) {                    // « reflexologie » = grille de la réflexologie ; sinon grille des massages
+    return source === "reflexologie" ? (window.TARIFS_REFLEXOLOGIE || []) : (window.TARIFS || []);
+  }
+  function htmlTarifs(source) {
+    return tarifsDe(source).map(function (t) {
       return "<li><span>" + esc(t.duree) + "</span> <strong>" + esc(t.prix) + " €</strong></li>";
     }).join("");
   }
   if (window.TARIFS) {
-    document.querySelectorAll("[data-tarifs]").forEach(function (el) { el.innerHTML = htmlTarifs(); });
+    document.querySelectorAll("[data-tarifs]").forEach(function (el) { el.innerHTML = htmlTarifs(el.getAttribute("data-tarifs")); });
     // Blocs de tarifs détaillés : <span data-prix="0"> = premier tarif, etc.
     document.querySelectorAll("[data-prix]").forEach(function (el) {
-      var t = window.TARIFS[+el.getAttribute("data-prix")];
+      var t = tarifsDe(el.getAttribute("data-source"))[+el.getAttribute("data-prix")];
       if (t) el.textContent = t.prix + " €";
     });
     document.querySelectorAll("[data-duree]").forEach(function (el) {
-      var t = window.TARIFS[+el.getAttribute("data-duree")];
+      var t = tarifsDe(el.getAttribute("data-source"))[+el.getAttribute("data-duree")];
       if (t) el.textContent = t.duree;
     });
   }
@@ -150,9 +153,10 @@
             "<dt>Dates</dt><dd>" + esc(f.dates) + "</dd>" +
             "<dt>Durée</dt><dd>" + esc(f.duree) + "</dd>" +
             "<dt>Tarif</dt><dd>" + esc(f.prix) + "</dd>" +
-            "<dt>Places</dt><dd>" + esc(f.places) + "</dd>" +
+            (f.places ? "<dt>Places</dt><dd>" + esc(f.places) + "</dd>" : "") +
             "<dt>Lieu</dt><dd>" + esc(f.lieu) + "</dd>" +
             "<dt>Public</dt><dd>" + esc(f.public) + "</dd>" +
+            (f.financement ? "<dt>Financement</dt><dd>" + esc(f.financement) + "</dd>" : "") +
           "</dl>" +
           '<a class="btn btn--appel carte__lien" href="tel:+33618930126">S\'inscrire par téléphone</a>' +
         "</div></article>";

@@ -45,6 +45,8 @@ window.TARIFS = [
 
 Les cartes de massages et les blocs de tarifs se mettent à jour tout seuls.
 
+La **réflexologie plantaire** a sa propre grille (`TARIFS_REFLEXOLOGIE`, une seule durée : 1 h à 60 €).
+
 ⚠️ Pour le référencement Google, les prix sont aussi écrits en dur à deux autres endroits. Pensez à les modifier :
 
 - le texte de secours dans les pages : faites un Rechercher `60 €` / `80 €` dans les fichiers `.html` ;

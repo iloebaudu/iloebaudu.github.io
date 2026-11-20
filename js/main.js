@@ -59,28 +59,78 @@
   }
 
   /* -------------------------------------------------------------------
-     3a. Cartes « Massages du monde »
+     3a. Galerie des massages (accordéon de photos « Elastic Gallery »)
      ------------------------------------------------------------------- */
   var listeMassages = document.getElementById("liste-massages");
   if (listeMassages && window.MASSAGES) {
+    /* Galerie « Elastic Gallery » : accordéon de photos. Un seul panneau est ouvert à la fois :
+       survol (souris), clic / toucher, ou clavier (touche Tab puis Entrée). */
+    var ICONE_TEL = '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>';
     listeMassages.innerHTML = window.MASSAGES.map(function (m) {
-      return '<article class="carte reveal' + (m.vedette ? " carte--vedette" : "") + '" id="' + esc(m.id) + '">' +
-        '<div class="carte__media"><img src="' + esc(m.image) + '" alt="' + esc(m.imageAlt) + '"' + (m.imagePos ? ' style="object-position:' + esc(m.imagePos) + '"' : "") + ' loading="lazy" decoding="async" width="800" height="533"></div>' +
-        '<div class="carte__corps">' +
-          (m.vedette ? '<p><span class="etiquette">Recommandé</span></p>' : "") +
-          '<p class="carte__origine">' + esc(m.origine) + "</p>" +
-          "<h2 class=\"h3\">" + esc(m.nom) + "</h2>" +
-          "<p>" + esc(m.accroche) + "</p>" +
-          '<dl class="details-massage">' +
+      var base = String(m.image).replace(/-800\.jpg$/, "");
+      return '<article class="elastic__item" id="' + esc(m.id) + '">' +
+        '<div class="elastic__fond">' +
+          /* sizes : sur ordinateur on charge la grande photo (panneau haut de 640 px), sur téléphone la petite */
+          '<img src="' + esc(base) + '-800.jpg" srcset="' + esc(base) + '-800.jpg 800w, ' + esc(base) + '.jpg 1600w" sizes="(min-width: 900px) 1000px, 260px"' +
+            ' alt="' + esc(m.imageAlt) + '"' + (m.imagePos ? ' style="object-position:' + esc(m.imagePos) + '"' : "") +
+            ' width="800" height="533" loading="lazy" decoding="async">' +
+          '<span class="elastic__voile"></span>' +
+        "</div>" +
+        '<button type="button" class="elastic__bouton" aria-expanded="false" aria-controls="corps-' + esc(m.id) + '">' +
+          '<span class="elastic__etiquette">' + esc(m.nom) + "</span>" +
+        "</button>" +
+        '<div class="elastic__corps" id="corps-' + esc(m.id) + '">' +
+          '<div class="elastic__pastilles"><span class="elastic__pastille">' + esc(m.origine) + "</span>" +
+            (m.vedette ? '<span class="etiquette">Recommandé</span>' : "") + "</div>" +
+          '<h3 class="elastic__titre">' + esc(m.nom) + "</h3>" +
+          '<p class="elastic__accroche">' + esc(m.accroche) + "</p>" +
+          '<dl class="elastic__details">' +
             "<dt>Origine</dt><dd>" + esc(m.origineTexte) + "</dd>" +
             "<dt>Déroulé</dt><dd>" + esc(m.deroule) + "</dd>" +
             "<dt>Ressenti</dt><dd>" + esc(m.ressenti) + "</dd>" +
           "</dl>" +
           (m.tarifTexte ? '<p class="tarif-note">' + esc(m.tarifTexte) + "</p>"
                         : '<ul class="tarifs" aria-label="Tarifs">' + htmlTarifs() + "</ul>") +
-          (m.lien ? '<a class="carte__lien" href="' + esc(m.lien) + '">En savoir plus sur la ' + esc(m.nom.toLowerCase()) + " →</a>" : "") +
+          '<a class="btn btn--clair elastic__appel" href="tel:+33618930126">' + ICONE_TEL + "<span>Réserver par téléphone</span></a>" +
         "</div></article>";
     }).join("");
+
+    var panneaux = [].slice.call(listeMassages.querySelectorAll(".elastic__item"));
+    var minuteurSurvol = 0;
+    var ordinateur = window.matchMedia ? window.matchMedia("(min-width: 900px)") : { matches: true };
+
+    function ouvrir(panneau, defiler) {
+      panneaux.forEach(function (p) {
+        var actif = p === panneau;
+        p.classList.toggle("is-actif", actif);
+        p.querySelector(".elastic__bouton").setAttribute("aria-expanded", String(actif));
+      });
+      /* Sur téléphone, les panneaux du dessus se referment : on recadre le panneau ouvert */
+      if (defiler && !ordinateur.matches) {
+        setTimeout(function () { panneau.scrollIntoView({ block: "nearest", behavior: "smooth" }); }, 380);
+      }
+    }
+    panneaux.forEach(function (p) {
+      p.querySelector(".elastic__bouton").addEventListener("click", function () { ouvrir(p, true); });
+      p.addEventListener("pointerenter", function (e) {            // survol à la souris (ordinateur) avec un court délai anti-sursaut
+        if (e.pointerType !== "mouse" || !ordinateur.matches) return;
+        clearTimeout(minuteurSurvol);
+        minuteurSurvol = setTimeout(function () { ouvrir(p, false); }, 90);
+      });
+      p.addEventListener("pointerleave", function () { clearTimeout(minuteurSurvol); });
+    });
+
+    /* Lien direct (ex. massages-du-monde.html#taurumi, depuis le manège de l'accueil) */
+    function depuisAncre() {
+      var id = decodeURIComponent((window.location.hash || "").replace("#", ""));
+      var cible = panneaux.filter(function (p) { return p.id === id; })[0];
+      if (!cible) return false;
+      ouvrir(cible, false);
+      cible.scrollIntoView({ block: "start", behavior: "auto" });
+      return true;
+    }
+    if (!depuisAncre()) ouvrir(panneaux[0], false);                // sinon, le premier massage (« sur mesure ») est ouvert
+    window.addEventListener("hashchange", depuisAncre);
   }
 
   /* -------------------------------------------------------------------

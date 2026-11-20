@@ -28,7 +28,7 @@ window.MASSAGES = [
     origine: "Techniques du monde · composé pour vous",
     vedette: true,                       // true = mis en avant (grande carte)
     image: "images/massage-sur-mesure-mains-800.jpg",
-    imagePos: "50% 60%",               // (optionnel) cadrage de la photo : "horizontal vertical"
+    imagePos: "50% 22%",               // (optionnel) cadrage de la photo : "horizontal vertical" (plus petit = montre plus le haut)
     imageAlt: "Praticienne tenant une pierre chaude entre ses mains au-dessus d'une personne allongée",
     accroche: "Le massage qui me ressemble le plus : celui que je compose pour vous.",
     origineTexte: "Au fil de mes voyages, j'ai appris de nombreuses techniques, de Tahiti à la Thaïlande en passant par Hawaï. Je les associe librement, sans protocole figé.",

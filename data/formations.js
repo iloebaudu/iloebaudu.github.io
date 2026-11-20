@@ -2,8 +2,8 @@
    DONNÉES — FORMATIONS
    ---------------------------------------------------------------------
    Durées et tarifs fournis par Isabelle :
-     - 3 jours, 630 €  : Taurumi, Lomi-lomi, californien, pierres chaudes
-     - 4 jours, 840 €  : massage thaï, massage du ventre
+     - 3 jours, 630 €  : Lomi-lomi, californien, pierres chaudes
+     - 4 jours, 840 €  : Taurumi, massage thaï, massage du ventre
      - tarifs adaptés pour les autofinancements (champ « financement »)
 
    👉 À compléter : « dates » (pour l'instant « À venir »).
@@ -25,8 +25,8 @@ window.FORMATIONS = [
     imageAlt: "Stagiaires en paréo assises en cercle, mains levées, lors d'une formation au Taurumi",
     description: "Apprenez les gestes, le rythme et l'esprit du Taurumi tahitien : postures de la praticienne, travail des avant-bras, utilisation du monoï et déroulé complet d'une séance. Une transmission rare en France, au plus près de la tradition polynésienne.",
     dates: "À venir",                                 // dates des prochaines sessions : à compléter
-    duree: "3 jours",
-    prix: "630 €",
+    duree: "4 jours",
+    prix: "840 €",
     lieu: "Salon – Les Mages",
     public: "Tous niveaux, aucun prérequis",
     financement: "Tarifs adaptés pour les autofinancements"
